@@ -12,9 +12,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function manageVue()
     {
-        //
+        return view('products-vue');
+    }
+
+    public function index(Request $request)
+    {
+        $products = Product::all();
+
+        $response = [
+            'products' => $products
+        ];
+
+        return response()->json($response);
     }
 
     /**
@@ -24,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
