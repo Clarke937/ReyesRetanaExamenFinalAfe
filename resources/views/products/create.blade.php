@@ -4,35 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     
-    <div class="container" id="manage-products">
-        <table class="table table-bordered">
-            <tr>
-                <th>Codigo</th>
-                <th>Rut</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Domicilio</th>
-                <th>Fecha de ingreso</th>
-                <th width="200px">Action</th>
-            </tr>
-            <tr v-for="product in products">
-                <td>@{{ product.id }}</td>
-                <td>@{{ product.nombre }}</td>
-                <td>@{{ product.descripcion }}</td>
-                <td>@{{ product.precio_unitario }}</td>
-                <td>@{{ product.existencia }}</td>
-                <td>@{{ product.garantia }}</td>
-                <td>@{{ product.seller_id }}</td>
-                <td>    
-                  <button class="btn btn-primary" @click.prevent="editItem(socio)">Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteItem(socio)">Borrar</button>
-                </td>
-            </tr>
-        </table>
+    <div class="container mt-4" id="manage-products">
+        <h1 class="my-4"> Productos </h1>
+        <form method="POST" v-on:submit.prevent="createItem">
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ingrese Nombre Producto">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Descripcion">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Precio Unitario">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Existencias">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Garantia">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Seller Id">
+            </div>
+
+
+
+        </form>
+
+        <button class="btn btn-success" @click.prevent="crearitem(product)">Crear</button>
     </div>
 
 </body>
@@ -68,12 +72,7 @@
 
         methods : {
 
-            getVueItems: function(){
-                this.$http.get('/vueitems').then((response) => {
-                    console.log(response.data);
-                    this.$set('products', response.data.data.data);
-                });
-            }, 
+            
         }
     });
 

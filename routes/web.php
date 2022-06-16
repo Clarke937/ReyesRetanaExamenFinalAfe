@@ -26,4 +26,8 @@ Auth::routes();
 
 
 Route::get('products', 'App\Http\Controllers\ProductController@manageVue');
-Route::resource('vueitems','App\Http\Controllers\ProductController');
+Route::get('products/create', 'App\Http\Controllers\ProductController@create');
+Route::resource('vueproducts','App\Http\Controllers\ProductController');
+
+Route::get('sellers', 'App\Http\Controllers\SellerController@manageVue');
+Route::resource('vuesellers','App\Http\Controllers\SellerController');

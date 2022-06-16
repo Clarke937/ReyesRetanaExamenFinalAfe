@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,34 +11,28 @@
 <body>
     
     <div class="container mt-4" id="manage-products">
-        <h1 class="my-4"> Productos </h1>
+        <h1 class="my-4"> Vendedores </h1>
         <table class="table table-bordered">
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio Unitario</th>
-                <th>Existencia</th>
-                <th>Garantia</th>
-                <th>Seller Id</th>
+                <th>Dui</th>
+                <th>Direccion</th>
+                <th>Nit</th>
+                <th>Id Usuario</th>
                 <th width="200px">Action</th>
             </tr>
-            <tr v-for="product in products">
-                <td>@{{ product.id }}</td>
-                <td>@{{ product.nombre }}</td>
-                <td>@{{ product.descripcion }}</td>
-                <td>@{{ product.precio_unitario }}</td>
-                <td>@{{ product.existencia }}</td>
-                <td>@{{ product.garantia }}</td>
-                <td>@{{ product.seller_id }}</td>
+            <tr v-for="seller in sellers">
+                <td>@{{ seller.id}}</td>
+                <td>@{{ seller.dui}}</td>
+                <td>@{{ seller.direccion }}</td>
+                <td>@{{ seller.nit }}</td>
+                <td>@{{ seller.user_id }}</td>
                 <td>    
                   <button class="btn btn-primary" @click.prevent="editItem(socio)">Editar</button>
                   <button class="btn btn-danger" @click.prevent="deleteItem(socio)">Borrar</button>
                 </td>
             </tr>
         </table>
-
-        <a class="btn btn-success" href="#">Crear</a>
     </div>
 
 </body>
@@ -58,7 +53,7 @@
         el: '#manage-products',
 
         data: {
-            products: [],
+            sellers: [],
             newItem : {'id':'','nombre':'','descripcion':'','precio_unitario':'','existencia':'','garantia':'','seller_id':''},
             fillItem : {'id':'','nombre':'','descripcion':'','precio_unitario':'','existencia':'','garantia':'','seller_id':''},
         },
@@ -74,11 +69,11 @@
         methods : {
 
             getVueItems: function(){
-                this.$http.get('/vueproducts').then((response) => {
+                this.$http.get('/vuesellers').then((response) => {
                     console.log(response.json().data);
-                    this.$set('products', response.json().data);
+                    this.$set('sellers', response.json().data);
                 });
-            }
+            }, 
         }
     });
 

@@ -7,14 +7,25 @@ use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function __construct(){
+		$this->middleware('auth');
+	}
+
+    public function manageVue()
     {
-        return view("sellers/index");
+        return view('sellers-vue');
+    }
+
+    public function index(Request $request)
+    {
+        $products = Seller::all();
+
+        $response = [
+            'data' => $products
+        ];
+
+        return response()->json($response);
     }
 
     /**
